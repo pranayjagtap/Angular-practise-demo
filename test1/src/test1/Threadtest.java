@@ -13,15 +13,13 @@ public class Threadtest extends Thread {
 		while(true) {
 		System.out.println("3");
 		System.out.println("4");
-		calling();
+		if(true)
+		System.exit(0);
 		}
 		
 		
 		
 	}
-	public static void calling() {
-		
-		System.exit(0);
-	}
+	
 
 }
