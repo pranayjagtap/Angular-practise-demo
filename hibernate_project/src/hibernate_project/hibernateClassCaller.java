@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-//comment
+//comment lol
 import hibernate_project.dto.flex_details;
 
 public class hibernateClassCaller {
