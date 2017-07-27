@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 //comment lol
 import hibernate_project.dto.flex_details;
-
+//ok
 public class hibernateClassCaller {
 	public static void main(String args[])throws IOException{
 System.gc();
