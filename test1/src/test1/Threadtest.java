@@ -17,7 +17,7 @@ public class Threadtest extends Thread {
 		System.exit(0);
 		}
 		
-		//hi
+		//hi hello
 		
 	}
 	
