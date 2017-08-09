@@ -14,7 +14,7 @@ System.gc();
 	flex_details det = new flex_details();
 	try{
 	det.setUser_id(3);
-	det.setName("Pranay Jagtap ");
+	det.setName("Pranay Jagtap Intelligent Codr");
 	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 	Session session= sessionFactory.openSession();
 	session.beginTransaction();
