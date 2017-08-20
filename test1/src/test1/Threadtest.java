@@ -6,7 +6,7 @@ public class Threadtest extends Thread {
 		
 		Threadtest R1 = new Threadtest();
 		R1.start();
-		//Hello IntelliJ Testing
+		//Hello IntelliJ Testing21
 		
 	}
 	public void run() {
