@@ -369,17 +369,21 @@ public class HoldFundsScreen extends javax.swing.JFrame {
 				" where " + "cod_acct_no ="+jTextField1.getText();
 		String query2 = "delete from system.ch_hold_funds " +
 				"where " + "cod_acct_no ="+jTextField1.getText();
+		String log="INSERT INTO HOLD_RMVL_LOG VALUES ('"+jTextField4.getText()+"','"+jTextField5.getText()+"')";
 		System.out.println(query1);
 		System.out.println(query2);
 		String commit="commit";
 		Statement stmt1 = null;
 		Statement stmt2 = null;
 		Statement stmt3 = null;
+		Statement stmt4=null;
 		try {
 			stmt1 = connection.createStatement();
 			ResultSet rs = stmt1.executeQuery(query1);
 			stmt2 = connection.createStatement();
 			ResultSet rs1 = stmt1.executeQuery(query2);
+			stmt4 = connection.createStatement();
+			ResultSet rs3 = stmt1.executeQuery(log);
 			stmt3 = connection.createStatement();
 			ResultSet rs2 = stmt1.executeQuery(commit);
 			/*	if (!rs.next() ) {
@@ -394,7 +398,13 @@ public class HoldFundsScreen extends javax.swing.JFrame {
 			if (stmt1 != null)  stmt1.close(); 
 			if (stmt2 != null)  stmt2.close(); 
 			if (stmt3 != null)  stmt3.close();
+			if (stmt4 != null)  stmt3.close();
 		}
+		/*
+		String incident_no=jTextField4.getText();
+		String approver=jTextField5.getText();
+		 */
+
 	}                                        
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {                                         
@@ -443,17 +453,17 @@ public class HoldFundsScreen extends javax.swing.JFrame {
 		String query1 = "update tzfcr.rec_txnlog" +
 				"set " +"eod_tran_stat=eod_tran_log+1"+  
 				"where " + "id_tran_seq ="+jTextField5.getText();
-
+		String log="INSERT INTO HOLD_RMVL_LOG VALUES ('"+jTextField4.getText()+"','"+jTextField5.getText()+"')";
 		System.out.println(query1);
 
 		String commit="commit";
 		Statement stmt1 = null;
-
+		Statement stmt2=null;
 		Statement stmt3 = null;
 		try {
 			stmt1 = connection.createStatement();
 			ResultSet rs = stmt1.executeQuery(query1);
-
+			ResultSet rs1=stmt2.executeQuery(log);
 			stmt3 = connection.createStatement();
 			ResultSet rs2 = stmt1.executeQuery(commit);
 			/*	if (!rs.next() ) {
@@ -466,7 +476,7 @@ public class HoldFundsScreen extends javax.swing.JFrame {
 			System.out.println(e);
 		} finally {
 			if (stmt1 != null)  stmt1.close(); 
-
+			if(stmt2!=null) stmt2.close();
 			if (stmt3 != null)  stmt1.close();
 		}
 	}                                        
