@@ -364,10 +364,10 @@ public class HoldFundsScreen extends javax.swing.JFrame {
 		}
 
 		//update query 
-		String query1 = "update tzfcr.ch_acct_mast" +
+		String query1 = "update system.ch_acct_mast " +
 				"set " +"amt_hld=amt_hld-"+jTextField2.getText()+  
-				"where " + "cod_acct_no ="+jTextField1.getText();
-		String query2 = "delete from tzfcr.ch_hold_funds" +
+				" where " + "cod_acct_no ="+jTextField1.getText();
+		String query2 = "delete from system.ch_hold_funds " +
 				"where " + "cod_acct_no ="+jTextField1.getText();
 		System.out.println(query1);
 		System.out.println(query2);
