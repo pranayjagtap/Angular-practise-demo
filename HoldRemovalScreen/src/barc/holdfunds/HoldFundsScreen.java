@@ -104,14 +104,24 @@ public class HoldFundsScreen extends javax.swing.JFrame {
 		jButton1.setText("REMOVE HOLD");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton1ActionPerformed(evt);
+				try {
+					jButton1ActionPerformed(evt);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 
 		jButton2.setText("RESET");
 		jButton2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton2ActionPerformed(evt);
+				try {
+					jButton2ActionPerformed(evt);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -210,7 +220,12 @@ public class HoldFundsScreen extends javax.swing.JFrame {
 		jButton3.setText("CANCEL TRANSACTION");
 		jButton3.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton3ActionPerformed(evt);
+				try {
+					jButton3ActionPerformed(evt);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -309,6 +324,10 @@ public class HoldFundsScreen extends javax.swing.JFrame {
 
 	private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {                                            
 		// TODO add your handling code here:
+	}                                           
+
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {                                         
+		// TODO add your handling code here:
 		try {
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -373,25 +392,83 @@ public class HoldFundsScreen extends javax.swing.JFrame {
 			System.out.println(e);
 		} finally {
 			if (stmt1 != null)  stmt1.close(); 
-			if (stmt2 != null)  stmt1.close(); 
-			if (stmt3 != null)  stmt1.close();
+			if (stmt2 != null)  stmt2.close(); 
+			if (stmt3 != null)  stmt3.close();
+		}
+	}                                        
+
+	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {                                         
+		// TODO add your handling code here:
+	}                                        
+
+	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {                                         
+		// TODO add your handling code here:
+
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+		} catch (ClassNotFoundException e) {
+
+			System.out.println("Where is your Oracle JDBC Driver?");
+			e.printStackTrace();
+			return;
+
 		}
 
+		System.out.println("Oracle JDBC Driver Registered!");
 
+		Connection connection = null;
 
+		try {
 
-	}                                           
+			connection = DriverManager.getConnection(
+					"jdbc:oracle:thin:@localhost:1521:xe", "SYSTEM", "pranay");
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-		// TODO add your handling code here:
-	}                                        
+		} catch (SQLException e) {
 
-	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-		// TODO add your handling code here:
-	}                                        
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+			return;
 
-	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-		// TODO add your handling code here:
+		}
+
+		if (connection != null) {
+			System.out.println("You made it, take control your database now!");
+		} else {
+			System.out.println("Failed to make connection!");
+		}
+
+		//update query 
+		String query1 = "update tzfcr.rec_txnlog" +
+				"set " +"eod_tran_stat=eod_tran_log+1"+  
+				"where " + "id_tran_seq ="+jTextField5.getText();
+
+		System.out.println(query1);
+
+		String commit="commit";
+		Statement stmt1 = null;
+
+		Statement stmt3 = null;
+		try {
+			stmt1 = connection.createStatement();
+			ResultSet rs = stmt1.executeQuery(query1);
+
+			stmt3 = connection.createStatement();
+			ResultSet rs2 = stmt1.executeQuery(commit);
+			/*	if (!rs.next() ) {
+				System.out.println("Query1 failed");
+			} 
+			else
+				System.out.println("Query1 executed");
+			 */
+		}catch (SQLException e ) {
+			System.out.println(e);
+		} finally {
+			if (stmt1 != null)  stmt1.close(); 
+
+			if (stmt3 != null)  stmt1.close();
+		}
 	}                                        
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
