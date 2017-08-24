@@ -198,7 +198,7 @@ public class HoldFundsScreen extends javax.swing.JFrame {
 		jLabel8.setText("BARCLAYS BANK TRANSACTION CANCELLATION SCREEN");
 
 		jLabel9.setText("TRANSACTION SEQUENCE");
-
+//:)
 		jLabel10.setText("AMOUNT");
 
 		jLabel11.setText("BRANCH");
