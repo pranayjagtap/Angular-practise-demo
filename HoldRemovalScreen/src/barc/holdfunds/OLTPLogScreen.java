@@ -6,7 +6,7 @@
 
 /**
  *
- * @author admin
+ * @author Pranay
  */
 package barc.holdfunds;
 public class OLTPLogScreen extends javax.swing.JFrame {
@@ -26,7 +26,7 @@ public class OLTPLogScreen extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
+//jenkins build
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
