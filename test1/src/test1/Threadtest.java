@@ -5,7 +5,7 @@ public class Threadtest extends Thread {
 	public static void main(String args[]) {
 		
 		Threadtest R1 = new Threadtest();
-		R1.start();
+		R1.start()
 		//Hello IntelliJ Testing213
 		
 	}
