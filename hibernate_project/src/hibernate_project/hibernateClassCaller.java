@@ -19,7 +19,7 @@ System.gc();
 	Session session= sessionFactory.openSession();
 	session.beginTransaction();
 	session.saveOrUpdate(det);
-	session.getTransaction().commit();
+	session.getTransaction().commit(;
 	System.out.println("This is do able");
 	}
 	catch(Exception e){
