@@ -50,7 +50,7 @@ public class OltpScreen extends javax.swing.JFrame {
         jTextField11 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+        jCheckBox1.setToolTipText("Smart Logger extracts useful insights from fetched logs!");
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\admin\\Desktop\\barcPFA.png")); // NOI18N
         jLabel1.setText("image");
 
