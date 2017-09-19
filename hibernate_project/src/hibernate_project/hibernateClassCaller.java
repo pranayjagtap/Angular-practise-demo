@@ -11,6 +11,7 @@ import hibernate_project.dto.flex_details;
 public class hibernateClassCaller {
 	public static void main(String args[])throws IOException{
 System.gc();
+//
 	flex_details det = new flex_details();
 	try{
 	det.setUser_id(3);
