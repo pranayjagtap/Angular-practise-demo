@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="remoteripository1" default="all">
+  
+  
+  <property file="remoteripository1.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.zip"/>
+    <include name="*.ear"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module hibernate_project -->
+  
+  <dirname property="module.hibernate_project.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.hibernate_project" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.hibernate_project" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.hibernate_project" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.hibernate_project" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="hibernate_project.output.dir" value="${module.hibernate_project.basedir}/out/production/hibernate_project"/>
+  <property name="hibernate_project.testoutput.dir" value="${module.hibernate_project.basedir}/out/test/hibernate_project"/>
+  
+  <path id="hibernate_project.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="hibernate_project.module.production.classpath">
+    <path refid="${module.jdk.classpath.hibernate_project}"/>
+  </path>
+  
+  <path id="hibernate_project.runtime.production.module.classpath">
+    <pathelement location="${hibernate_project.output.dir}"/>
+  </path>
+  
+  <path id="hibernate_project.module.classpath">
+    <path refid="${module.jdk.classpath.hibernate_project}"/>
+    <pathelement location="${hibernate_project.output.dir}"/>
+  </path>
+  
+  <path id="hibernate_project.runtime.module.classpath">
+    <pathelement location="${hibernate_project.testoutput.dir}"/>
+    <pathelement location="${hibernate_project.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.hibernate_project">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.hibernate_project">
+    <patternset refid="excluded.from.module.hibernate_project"/>
+  </patternset>
+  
+  <path id="hibernate_project.module.sourcepath">
+    <dirset dir="${module.hibernate_project.basedir}/hibernate_project">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.hibernate_project" depends="compile.module.hibernate_project.production,compile.module.hibernate_project.tests" description="Compile module hibernate_project"/>
+  
+  <target name="compile.module.hibernate_project.production" depends="register.custom.compilers" description="Compile module hibernate_project; production classes">
+    <mkdir dir="${hibernate_project.output.dir}"/>
+    <javac2 destdir="${hibernate_project.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.hibernate_project}/javac">
+      <compilerarg line="${compiler.args.hibernate_project}"/>
+      <bootclasspath refid="hibernate_project.module.bootclasspath"/>
+      <classpath refid="hibernate_project.module.production.classpath"/>
+      <src refid="hibernate_project.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.hibernate_project"/>
+    </javac2>
+    
+    <copy todir="${hibernate_project.output.dir}">
+      <fileset dir="${module.hibernate_project.basedir}/hibernate_project/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.hibernate_project.tests" depends="register.custom.compilers,compile.module.hibernate_project.production" description="compile module hibernate_project; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.hibernate_project" description="cleanup module">
+    <delete dir="${hibernate_project.output.dir}"/>
+    <delete dir="${hibernate_project.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module RemoteRipository1 -->
+  
+  <dirname property="module.remoteripository1.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.remoteripository1" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.remoteripository1" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.remoteripository1" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.remoteripository1" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="remoteripository1.output.dir" value="${module.remoteripository1.basedir}/out/production/RemoteRipository1"/>
+  <property name="remoteripository1.testoutput.dir" value="${module.remoteripository1.basedir}/out/test/RemoteRipository1"/>
+  
+  <path id="remoteripository1.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="remoteripository1.module.production.classpath">
+    <path refid="${module.jdk.classpath.remoteripository1}"/>
+  </path>
+  
+  <path id="remoteripository1.runtime.production.module.classpath">
+    <pathelement location="${remoteripository1.output.dir}"/>
+  </path>
+  
+  <path id="remoteripository1.module.classpath">
+    <path refid="${module.jdk.classpath.remoteripository1}"/>
+    <pathelement location="${remoteripository1.output.dir}"/>
+  </path>
+  
+  <path id="remoteripository1.runtime.module.classpath">
+    <pathelement location="${remoteripository1.testoutput.dir}"/>
+    <pathelement location="${remoteripository1.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.remoteripository1">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.remoteripository1">
+    <patternset refid="excluded.from.module.remoteripository1"/>
+  </patternset>
+  
+  <path id="remoteripository1.module.sourcepath">
+    <dirset dir="${module.remoteripository1.basedir}">
+      <include name="Desktop"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.remoteripository1" depends="compile.module.remoteripository1.production,compile.module.remoteripository1.tests" description="Compile module RemoteRipository1"/>
+  
+  <target name="compile.module.remoteripository1.production" depends="register.custom.compilers" description="Compile module RemoteRipository1; production classes">
+    <mkdir dir="${remoteripository1.output.dir}"/>
+    <javac2 destdir="${remoteripository1.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.remoteripository1}/javac">
+      <compilerarg line="${compiler.args.remoteripository1}"/>
+      <bootclasspath refid="remoteripository1.module.bootclasspath"/>
+      <classpath refid="remoteripository1.module.production.classpath"/>
+      <src refid="remoteripository1.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.remoteripository1"/>
+    </javac2>
+    
+    <copy todir="${remoteripository1.output.dir}">
+      <fileset dir="${module.remoteripository1.basedir}/Desktop">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.remoteripository1.tests" depends="register.custom.compilers,compile.module.remoteripository1.production" description="compile module RemoteRipository1; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.remoteripository1" description="cleanup module">
+    <delete dir="${remoteripository1.output.dir}"/>
+    <delete dir="${remoteripository1.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module test1 -->
+  
+  <dirname property="module.test1.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.test1" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.test1" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.test1" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.test1" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="test1.output.dir" value="${module.test1.basedir}/out/production/test1"/>
+  <property name="test1.testoutput.dir" value="${module.test1.basedir}/out/test/test1"/>
+  
+  <path id="test1.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="test1.module.production.classpath">
+    <path refid="${module.jdk.classpath.test1}"/>
+  </path>
+  
+  <path id="test1.runtime.production.module.classpath">
+    <pathelement location="${test1.output.dir}"/>
+  </path>
+  
+  <path id="test1.module.classpath">
+    <path refid="${module.jdk.classpath.test1}"/>
+    <pathelement location="${test1.output.dir}"/>
+  </path>
+  
+  <path id="test1.runtime.module.classpath">
+    <pathelement location="${test1.testoutput.dir}"/>
+    <pathelement location="${test1.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.test1">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.test1">
+    <patternset refid="excluded.from.module.test1"/>
+  </patternset>
+  
+  <path id="test1.module.sourcepath">
+    <dirset dir="${module.test1.basedir}/test1">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.test1" depends="compile.module.test1.production,compile.module.test1.tests" description="Compile module test1"/>
+  
+  <target name="compile.module.test1.production" depends="register.custom.compilers" description="Compile module test1; production classes">
+    <mkdir dir="${test1.output.dir}"/>
+    <javac2 destdir="${test1.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.test1}/javac">
+      <compilerarg line="${compiler.args.test1}"/>
+      <bootclasspath refid="test1.module.bootclasspath"/>
+      <classpath refid="test1.module.production.classpath"/>
+      <src refid="test1.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.test1"/>
+    </javac2>
+    
+    <copy todir="${test1.output.dir}">
+      <fileset dir="${module.test1.basedir}/test1/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.test1.tests" depends="register.custom.compilers,compile.module.test1.production" description="compile module test1; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.test1" description="cleanup module">
+    <delete dir="${test1.output.dir}"/>
+    <delete dir="${test1.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.hibernate_project, clean.module.remoteripository1, clean.module.test1" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.hibernate_project, compile.module.remoteripository1, compile.module.test1" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
